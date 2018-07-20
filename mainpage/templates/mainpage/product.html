@@ -7,7 +7,8 @@
         <title>Список товаров</title>
     </head>
     <body>
-        <a href="{% url 'catalogue' %}">НАЗАД</a><br>
+        <a href="{% url 'catalogue' %}">НАЗАД К РАЗДЕЛАМ</a><br>
+        <a href="{% url 'index' %}">НА ГЛАВНУЮ</a>
         <h1>{{ catalogue_id }}</h1>
         <div style='padding-bottom:20px;display:block;'>
         {% for item in sorted_products %}
