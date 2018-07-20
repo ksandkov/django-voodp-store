@@ -1,9 +1,18 @@
 {% load static %}
-<link rel="stylesheet" type="text/css" href="{% static 'mainpage/style.css' %}" />
-<h1>Выберите интересующий раздел:</h1>
-
-{% for item in catalogue %}
-<div style='text-align:center;padding:20px 0;font-size:20px;'>
-    <a href="{{ item.id }}">{{ item }}</a><br>
-</div>
-{% endfor %}
+<!DOCTYPE html>
+<html lang="ru" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <link rel="stylesheet" type="text/css" href="{% static 'mainpage/style.css' %}" />
+        <title>Список разделов</title>
+    </head>
+    <body>
+        <a href="{% url 'index' %}">НАЗАД</a><br>
+        <h1>Выберите интересующий раздел:</h1>
+        {% for item in catalogue %}
+        <div style="text-align:center;padding:20px 0;font-size:20px;">
+            <a href="{{ item.id }}">{{ item }}</a><br>
+        </div>
+        {% endfor %}
+    </body>
+</html>

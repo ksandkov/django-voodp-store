@@ -17,4 +17,5 @@ def catalogue(request):
 def product(request, catalogue_id):
     return render(request, 'mainpage/product.html', {
         'catalogue_id': Category.objects.get(id=catalogue_id),
+        'sorted_products': Product.objects.filter(category=catalogue_id).order_by('name'),
     })
