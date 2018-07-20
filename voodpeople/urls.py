@@ -20,6 +20,5 @@ from mainpage.views import index
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', index),
-    path('catalogue/', include('mainpage.urls'))
+    path('', include('mainpage.urls'))
 ]
