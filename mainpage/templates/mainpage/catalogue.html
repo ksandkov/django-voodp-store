@@ -1,0 +1,9 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'mainpage/style.css' %}" />
+<h1>Выберите интересующий раздел:</h1>
+
+{% for item in catalogue %}
+<div style='text-align:center;padding:20px 0;font-size:20px;'>
+    <a href="{{ item.id }}">{{ item }}</a><br>
+</div>
+{% endfor %}

@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="utf-8">
+        <title>Товары для детей - КрейзиПипл-ВудуПипл КАТАЛОГ</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'mainpage/style.css' %}" />
+    </head>
+    <body>
+    <h1 style="text-align:center;">Товары для детей - КрейзиПипл-ВудуПипл</h1>
+    <div class="catalogue-links" style="text-align:center;">
+        <a href="{% url 'catalogue' %}">КАТАЛОГ РАЗДЕЛОВ</a>
+    </div>
+    </div>
+    <div class="catalogue-image" style="text-align:center;padding:20px 0;">
+        <img src="{% static 'mainpage/images/image1.png' %}" alt="Vodoo Shop"/>
+    </div>
+    <div class="description" style="text-align:center;">
+        <b>Описание магазина дестких товаров.</b>
+    </div>
+    </body>
+</html>

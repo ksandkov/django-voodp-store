@@ -1,0 +1,13 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'mainpage/style.css' %}" />
+<h1>{{ catalogue_id }}</h1>
+
+<div style='padding-bottom:20px;display:block;'>
+{% for item in catalogue_id.product_set.all %}
+    <div style='padding:10px;display:inline-block;'>
+        <b>Название:</b> {{ item.name }}<br>
+        <b>Описание:</b> {{ item.description }}<br>
+        <b>Цена:</b> {{ item.price }}
+    </div>
+{% endfor %}
+</div>
