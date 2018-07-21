@@ -14,8 +14,8 @@ def catalogue(request):
         'catalogue': Category.objects.all().order_by('cat_name'),
     })
 
-def product(request, catalogue_id):
+def product(request, cat):
     return render(request, 'mainpage/product.html', {
-        'catalogue_id': Category.objects.get(id=catalogue_id),
-        'sorted_products': Product.objects.filter(category=catalogue_id).order_by('name'),
+        'catalogue_cat': Category.objects.get(id=cat),
+        'sorted_products': Product.objects.filter(category=cat).order_by('name'),
     })

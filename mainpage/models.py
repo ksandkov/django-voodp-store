@@ -15,7 +15,7 @@ class Category(models.Model):
 class Product(models.Model):
     name = models.CharField(max_length=100, help_text="Введите название товара")
     description = models.TextField(max_length=100, help_text="Введите описание товара")
-    price = models.FloatField(max_length=5, help_text="Введите цену товара")
+    price = models.DecimalField(max_digits=6, decimal_places=2, help_text="Введите цену товара")
     category = models.ForeignKey(
         'Category',
         on_delete=models.CASCADE,
