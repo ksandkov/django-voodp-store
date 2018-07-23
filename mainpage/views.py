@@ -1,7 +1,11 @@
-from django.http import HttpResponse
-from django.shortcuts import render
+from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render, redirect
+from django.urls import reverse
+from django.contrib import messages
 
 from .models import Category, Product
+from .forms import ProductAddForm
+
 
 def index(request):
     name = Category.cat_name
@@ -18,4 +22,16 @@ def product(request, cat):
     return render(request, 'mainpage/product.html', {
         'catalogue_cat': Category.objects.get(id=cat),
         'sorted_products': Product.objects.filter(category=cat).order_by('name'),
+    })
+
+def new_product(request):
+    form = ProductAddForm(request.POST or None)
+    if request.method == 'POST' and form.is_valid():
+        category_id = form.cleaned_data['category'].id
+        product_name = form.cleaned_data['name']
+        messages.success(request, 'Спасибо, что добавили товар "{}".'.format(product_name))
+        form.save()
+        return redirect('product', category_id)
+    return render(request, 'mainpage/newproduct.html', {
+        'form': form,
     })

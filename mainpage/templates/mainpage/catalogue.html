@@ -14,5 +14,8 @@
             <a href="{{ item.id }}">{{ item }}</a><br>
         </div>
         {% endfor %}
+        <div style="text-align:center; margin-top 15px;">
+            <a href="{% url 'new_product' %}" class="btn">ДОБАВИТЬ НОВЫЙ ТОВАР</a>
+        </div>
     </body>
 </html>
