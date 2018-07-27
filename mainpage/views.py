@@ -19,10 +19,34 @@ def catalogue(request):
     })
 
 def product(request, cat):
-    return render(request, 'mainpage/product.html', {
-        'catalogue_cat': Category.objects.get(id=cat),
-        'sorted_products': Product.objects.filter(category=cat).order_by('name'),
-    })
+    catalogue_cat = Category.objects.get(id=cat)
+    sorted_products = Product.objects.filter(category=cat)
+    if request.method == 'GET':
+        if 'sortby' in request.GET and request.GET['sortby'] == 'name_up':
+            return render(request, 'mainpage/product.html', {
+                'catalogue_cat': catalogue_cat,
+                'sorted_products': sorted_products.order_by('name'),
+            })
+        elif 'sortby' in request.GET and request.GET['sortby'] == 'name_d':
+            return render(request, 'mainpage/product.html', {
+                'catalogue_cat': catalogue_cat,
+                'sorted_products': sorted_products.order_by('-name'),
+            })
+        elif 'sortby' in request.GET and request.GET['sortby'] == 'price_up':
+            return render(request, 'mainpage/product.html', {
+                'catalogue_cat': catalogue_cat,
+                'sorted_products': sorted_products.order_by('price'),
+            })
+        elif 'sortby' in request.GET and request.GET['sortby'] == 'price_d':
+            return render(request, 'mainpage/product.html', {
+                'catalogue_cat': catalogue_cat,
+                'sorted_products': sorted_products.order_by('-price'),
+            })
+        else:
+            return render(request, 'mainpage/product.html', {
+                'catalogue_cat': Category.objects.get(id=cat),
+                'sorted_products': Product.objects.filter(category=cat),
+                })
 
 def new_product(request):
     form = ProductAddForm(request.POST or None)

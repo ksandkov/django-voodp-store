@@ -10,7 +10,7 @@
         {% if messages %}
         <ul class="messages">
             {% for message in messages %}
-                {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
+                {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Важно: {% endif %}
                 {{ message }}
             {% endfor %}
         </ul>
@@ -18,6 +18,18 @@
         <a href="{% url 'catalogue' %}">НАЗАД К РАЗДЕЛАМ</a><br>
         <a href="{% url 'index' %}">НА ГЛАВНУЮ</a>
         <h1>{{ catalogue_cat }}</h1>
+        <div>
+            <table>
+                <tr>
+                    <td style="padding-right: 25px;"><a href="?sortby=name_up">Сортировать по алфавиту А-Я</a></td>
+                    <td><a href="?sortby=price_up">Сортировать по цене "По возрастанию"</a></td>
+                </tr>
+                <tr>
+                    <td><a href="?sortby=name_d">Сортировать по алфавиту Я-А</a></td>
+                    <td><a href="?sortby=price_d">Сортировать по цене "По убыванию"</a></td>
+                </tr>
+            </table>
+        </div>
         <div style='padding-bottom:20px;display:block;'>
         {% for item in sorted_products %}
             <div style='padding:10px;display:inline-block;'>
