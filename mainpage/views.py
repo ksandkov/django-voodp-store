@@ -44,8 +44,8 @@ def product(request, cat):
             })
         else:
             return render(request, 'mainpage/product.html', {
-                'catalogue_cat': Category.objects.get(id=cat),
-                'sorted_products': Product.objects.filter(category=cat),
+                'catalogue_cat': catalogue_cat,
+                'sorted_products': sorted_products,
                 })
 
 def new_product(request):
