@@ -13,10 +13,12 @@ def index(request):
         'name': name,
     })
 
+
 def catalogue(request):
     return render(request, 'mainpage/catalogue.html', {
         'catalogue': Category.objects.all().order_by('cat_name'),
     })
+
 
 def product(request, cat):
     catalogue_cat = Category.objects.get(id=cat)
@@ -48,12 +50,14 @@ def product(request, cat):
                 'sorted_products': sorted_products,
                 })
 
+
 def new_product(request):
     form = ProductAddForm(request.POST or None)
     if request.method == 'POST' and form.is_valid():
         category_id = form.cleaned_data['category'].id
         product_name = form.cleaned_data['name']
-        messages.success(request, 'Спасибо, что добавили товар "{}".'.format(product_name))
+        messages.success(request, 'Спасибо, что добавили товар "{}".'.format(
+                        product_name))
         form.save()
         return redirect('product', category_id)
     return render(request, 'mainpage/newproduct.html', {
