@@ -1,0 +1,15 @@
+{% extends 'mainpage/base.html' %}
+{% load static %}
+{% block title %}
+<title>Редактирование товара {{ instance.name }}</title>
+{% endblock %}
+{% block content %}
+        <h1 class="catalogue_h1">Форма редактирования товара {{ instance.name }}</h1>
+        <form action="" method="post" style="text-align:center;width:300px;margin-left: auto;margin-right: auto;display: grid;">
+            {% csrf_token %}
+            {{ form.as_table }}
+        <div class="">
+            <button type="submit" name="button" class="btn essence-btn"  style="margin:20px 0">СОХРАНИТЬ</button>
+        </div>
+        </form>
+{% endblock %}

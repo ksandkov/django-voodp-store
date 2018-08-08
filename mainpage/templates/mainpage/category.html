@@ -1,0 +1,129 @@
+{% extends 'mainpage/base.html' %}
+{% load static %}
+{% block title %}
+<title>{{ catalogue_cat }}</title>
+{% endblock %}
+{% block content %}
+        <!-- ##### New Arrivals Area Start ##### -->
+        <section class="new_arrivals_area clearfix">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section-heading text-center" style="margin-bottom:0px;">
+                            <h1 style="padding-top: 40px;padding-bottom: 25px;">{{ catalogue_cat }}</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+<section class="shop_grid_area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-4 col-lg-3">
+                    <div class="shop_sidebar_area">
+
+                        <!-- ##### Single Widget ##### -->
+                        <div class="widget catagory mb-50">
+                            <!-- Widget Title -->
+                            <h6 class="widget-title mb-30">Фильтры</h6>
+
+                            <!--  Catagories  -->
+                            <div class="catagories-menu">
+                                <ul id="menu-content2" class="menu-content collapse show">
+                                    <!-- Single Item -->
+                                    <li>
+                                        <a href="#">Сортировать по:</a>
+                                        <ul class="sub-menu">
+                                            <li><a href="?sortby=name_up">По алфавиту А-Я</a></li>
+                                            <li><a href="?sortby=name_d">По алфавиту Я-А</a></li>
+                                            <li><a href="?sortby=price_up">По цене $-$$</a></li>
+                                            <li><a href="?sortby=price_d">По цене $$-$</a></li>
+                                        </ul>
+                                    </li>
+                                    <!-- Single Item -->
+                                    <li>
+                                        <a href="#">Каталог:</a>
+                                        <ul class="sub-menu">
+                                            {% for item in catalogue %}
+                                            <li><a href="{% url 'category' item.id %}">{{ item }}</a></li>
+                                            {% endfor %}
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-8 col-lg-9">
+                    <div class="shop_grid_product_area">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="product-topbar d-flex align-items-center justify-content-between">
+                                    <!-- Total Products -->
+                                    <div class="total-products">
+                                        <p>Всего <span>{{ sorted_products.count }}</span> товаров</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% if sorted_products %}
+                        <div class="row">
+                            {% for item in sorted_products %}
+                            <!-- Single Product -->
+                            <div class="col-12 col-sm-6 col-lg-4">
+                                <div class="single-product-wrapper">
+                                    <!-- Product Image -->
+                                    <div class="product-img">
+                                        <img src={% static 'mainpage/img/' %}product-img/product-1.png alt="">
+                                        <!-- Hover Thumb -->
+                                            <img class="hover-img" src={% static 'mainpage/img/' %}product-img/product-2.png alt="">
+                                    </div>
+                                    <!-- Product Description -->
+                                    <div class="product-description">
+                                        <a href="{{ item.id }}">
+                                            <h6>{{ item.name }}<br></h6>
+                                        </a>
+                                        <span>{{ item.description }}</span>
+                                        <p class="product-price">Цена: {{ item.price }} грн.</p>
+
+                                        <!-- Hover Content -->
+                                        <div class="hover-content">
+                                            <!-- Add to Cart -->
+                                            <div class="add-to-cart-btn">
+                                                <a href="{{ item.id }}" class="btn essence-btn">Выбрать</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                    </div>
+                    <!-- Pagination -->
+                    <nav aria-label="navigation" text-align="center">
+
+                        <ul class="pagination mt-50 mb-70">
+                            {% if page_paginate.has_previous %}
+                            <li class="page-item"><a class="page-link" href="?page={{ page_paginate.previous_page_number }}"><i class="fa fa-angle-left"></i></a></li>
+                            {% else %}
+                            <li class="page-item"><a class="page-link" href=""><i class="fa fa-angle-left"></i></a></li>
+                            {% endif %}
+                            {% for num in paginator.page_range %}
+                            <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
+                            {% endfor %}
+                            {% if page_paginate.has_next %}
+                            <li class="page-item"><a class="page-link" href="?page={{ page_paginate.next_page_number }}"><i class="fa fa-angle-right"></i></a></li>
+                            {% else %}
+                            <li class="page-item"><a class="page-link" href=""><i class="fa fa-angle-right"></i></a></li>
+                            {% endif %}
+                        </ul>
+
+
+{{for_paginate}}
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
