@@ -29,7 +29,6 @@ def catalogue(request):
 def category(request, cat):
     catalogue_cat = get_object_or_404(Category, pk=cat)
     sorted_products = Product.objects.filter(category=cat).filter(is_approved=True)
-    for_paginate = sorted_products
     paginator = Paginator(sorted_products, 3)
     page = request.GET.get('page')
     page_paginate = paginator.get_page(page)
