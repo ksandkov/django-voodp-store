@@ -1,21 +1,28 @@
+{% extends 'mainpage/base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="ru" dir="ltr">
-    <head>
-        <meta charset="utf-8">
-        <link rel="stylesheet" type="text/css" href="{% static 'mainpage/style.css' %}" />
-        <title>Список разделов</title>
-    </head>
-    <body>
-        <a href="{% url 'index' %}">НАЗАД НА ГЛАВНУЮ</a><br>
-        <h1>Выберите интересующий раздел:</h1>
-        {% for item in catalogue %}
-        <div style="text-align:center;padding:20px 0;font-size:20px;">
-            <a href="{{ item.id }}">{{ item }}</a><br>
+{% block title %}
+    <title>Список разделов</title>
+{% endblock %}
+{% block content %}
+        <h1 class="catalogue_h1">Выберите интересующий раздел:</h1>
+        <div class="top_catagory_area section-padding-80 clearfix">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <!-- Single Catagory -->
+                    {% for item in catalogue %}
+                    <div class="col-12 col-sm-6 col-md-4" style="padding-bottom:40px">
+                        <div class="single_catagory_area d-flex align-items-center justify-content-center bg-img" style="background-image: url({% static 'mainpage/img/' %}/bg-img/bg-{{ rand|add:"234"|make_list|random }}.jpg);">
+                            <div class="catagory-content">
+                                <a href="{{ item.id }}">{{ item }}</a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
         </div>
-        {% endfor %}
+        <!-- ##### Top Catagory Area End ##### -->
         <div style="text-align:center; margin-top 15px;">
             <a href="{% url 'new_product' %}" class="btn">ДОБАВИТЬ НОВЫЙ ТОВАР</a>
         </div>
-    </body>
-</html>
+{% endblock %}

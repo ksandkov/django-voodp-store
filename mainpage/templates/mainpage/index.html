@@ -1,25 +1,52 @@
+{% extends 'mainpage/base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="ru">
-    <head>
-        <meta charset="utf-8">
-        <title>Товары для детей - КрейзиПипл-ВудуПипл КАТАЛОГ</title>
-        <link rel="stylesheet" type="text/css" href="{% static 'mainpage/style.css' %}" />
-    </head>
-    <body>
-    <h1 style="text-align:center;">Товары для детей - КрейзиПипл-ВудуПипл</h1>
-    <div class="catalogue-links" style="text-align:center;">
-        <a href="{% url 'catalogue' %}">КАТАЛОГ РАЗДЕЛОВ</a>
+
+{% block title %}
+    <title>Товары для детей - КрейзиПипл-ВудуПипл</title>
+{% endblock %}
+
+{% block content %}
+    <!-- ##### Welcome Area Start ##### -->
+    <section class="welcome_area bg-img background-overlay" style="background-image: url({% static 'mainpage/img/' %}/bg-img/bg-1.png);">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-12">
+                    <div class="hero-content">
+                        <h2>Товары для детей - КрейзиПипл-ВудуПипл</h2>
+                        <a href="{% url 'catalogue' %}" class="btn essence-btn">ПЕРЕЙТИ К КАТАЛОГУ</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ##### Welcome Area End ##### -->
+
+    <!-- ##### Brands Area Start ##### -->
+    <div class="brands-area d-flex align-items-center justify-content-between">
+        <!-- Brand Logo -->
+        <div class="single-brands-logo">
+            <img src={% static 'mainpage/img/' %}core-img/brand1.png alt="">
+        </div>
+        <!-- Brand Logo -->
+        <div class="single-brands-logo">
+            <img src={% static 'mainpage/img/' %}core-img/brand2.png alt="">
+        </div>
+        <!-- Brand Logo -->
+        <div class="single-brands-logo">
+            <img src={% static 'mainpage/img/' %}core-img/brand3.png alt="">
+        </div>
+        <!-- Brand Logo -->
+        <div class="single-brands-logo">
+            <img src={% static 'mainpage/img/' %}core-img/brand4.png alt="">
+        </div>
+        <!-- Brand Logo -->
+        <div class="single-brands-logo">
+            <img src={% static 'mainpage/img/' %}core-img/brand5.png alt="">
+        </div>
+        <!-- Brand Logo -->
+        <div class="single-brands-logo">
+            <img src={% static 'mainpage/img/' %}core-img/brand6.png alt="">
+        </div>
     </div>
-    </div>
-    <div class="catalogue-image" style="text-align:center;padding:20px 0;">
-        <img src="{% static 'mainpage/images/image1.png' %}" alt="Vodoo Shop"/>
-    </div>
-    <div class="description" style="text-align:center;">
-        <b>Описание магазина дестких товаров.</b>
-    </div>
-    <div style="text-align:center; margin-top 15px;">
-        <a href="{% url 'new_product' %}" class="btn">ДОБАВИТЬ НОВЫЙ ТОВАР</a>
-    </div>
-    </body>
-</html>
+    <!-- ##### Brands Area End ##### -->
+{% endblock %}

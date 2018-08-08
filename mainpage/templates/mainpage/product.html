@@ -1,49 +1,33 @@
+{% extends 'mainpage/base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="ru" dir="ltr">
-    <head>
-        <meta charset="utf-8">
-        <link rel="stylesheet" type="text/css" href="{% static 'mainpage/style.css' %}" />
-        <title>Список товаров</title>
-    </head>
-    <body>
-        {% if messages %}
-        <ul class="messages">
-            {% for message in messages %}
-                {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Важно: {% endif %}
-                {{ message }}
-            {% endfor %}
-        </ul>
-        {% endif %}
-        <a href="{% url 'catalogue' %}">НАЗАД К РАЗДЕЛАМ</a><br>
-        <a href="{% url 'index' %}">НА ГЛАВНУЮ</a>
-        <h1>{{ catalogue_cat }}</h1>
-        <div>
-            <table>
-                <tr>
-                    <td><a href="{% url 'product' catalogue_cat.id %} ">Сбросить фильтры</a></td>
-                </tr>
-                <tr>
-                    <td style="padding-right: 25px;"><a href="?sortby=name_up">Сортировать по алфавиту А-Я</a></td>
-                    <td><a href="?sortby=price_up">Сортировать по цене "По возрастанию"</a></td>
-                </tr>
-                <tr>
-                    <td><a href="?sortby=name_d">Сортировать по алфавиту Я-А</a></td>
-                    <td><a href="?sortby=price_d">Сортировать по цене "По убыванию"</a></td>
-                </tr>
-            </table>
+
+{% block title %}
+    <title>Страница товара {{ item.name }}</title>
+{% endblock %}
+
+{% block content %}
+<!-- ##### Single Product Details Area Start ##### -->
+<section class="single_product_details_area d-flex align-items-center" style="max-width: 60%;margin: 105px 0 20px 140px;">
+    <!-- Single Product Thumb -->
+    <div class="single_product_thumb clearfix">
+        <div class="product_thumbnail_slides owl-carousel prod-img">
+            <img src={% static 'mainpage/img/' %}product-img/product-1.png alt="">
+            <img src={% static 'mainpage/img/' %}product-img/product-2.png alt="">
         </div>
-        <div style='padding-bottom:20px;display:block;'>
-        {% for item in sorted_products %}
-            <div style='padding:10px;display:inline-block;'>
-                <b>Название:</b> {{ item.name }}<br>
-                <b>Описание:</b> {{ item.description }}<br>
-                <b>Цена:</b> {{ item.price }}
-            </div>
-        {% endfor %}
-        <div style="text-align:center; margin-top 15px;">
-            <a href="{% url 'new_product' %}" class="btn">ДОБАВИТЬ НОВЫЙ ТОВАР</a>
+    </div>
+
+    <!-- Single Product Description -->
+    <div class="single_product_desc clearfix">
+            <h2>{{ item.name }}</h2>
+        <p class="product-price">{{ item.price }} грн.</p>
+        <p class="product-desc">{{ item.description }}</p>
+        <!-- Cart & Favourite Box -->
+        <div class="cart-fav-box d-flex align-items-center">
+            <!-- Cart -->
+            <a href="edit/" class="btn essence-btn">Редактировать товар</a>
+            <!-- Favourite -->
         </div>
-        </div>
-    </body>
-</html>
+    </div>
+</section>
+<!-- ##### Single Product Details Area End ##### -->
+{% endblock %}
