@@ -32,6 +32,8 @@ def category(request, cat):
     paginator = Paginator(sorted_products, 3)
     page = request.GET.get('page')
     page_paginate = paginator.get_page(page)
+    products = Product.objects.filter(category=cat).filter(is_approved=True)
+
 
     if 'search' in request.GET:
         sorted_products = sorted_products.filter(name__contains=request.GET['search'])
@@ -41,33 +43,37 @@ def category(request, cat):
                 'catalogue_cat': catalogue_cat,
                 'sorted_products': sorted_products.order_by('name'),
                 'catalogue': Category.objects.all().order_by('cat_name'),
+                'products': products,
             })
         elif 'sortby' in request.GET and request.GET['sortby'] == 'name_d':
             return render(request, 'mainpage/category.html', {
                 'catalogue_cat': catalogue_cat,
                 'sorted_products': sorted_products.order_by('-name'),
                 'catalogue': Category.objects.all().order_by('cat_name'),
+                'products': products,
             })
         elif 'sortby' in request.GET and request.GET['sortby'] == 'price_up':
             return render(request, 'mainpage/category.html', {
                 'catalogue_cat': catalogue_cat,
                 'sorted_products': sorted_products.order_by('price'),
                 'catalogue': Category.objects.all().order_by('cat_name'),
+                'products': products,
             })
         elif 'sortby' in request.GET and request.GET['sortby'] == 'price_d':
             return render(request, 'mainpage/category.html', {
                 'catalogue_cat': catalogue_cat,
                 'sorted_products': sorted_products.order_by('-price'),
                 'catalogue': Category.objects.all().order_by('cat_name'),
+                'products': products,
             })
         else:
-
             return render(request, 'mainpage/category.html', {
                 'catalogue_cat': catalogue_cat,
                 'sorted_products': paginator.page(request.GET.get('page', 1)),
                 'catalogue': Category.objects.all().order_by('cat_name'),
                 'paginator': paginator,
                 'page_paginate': page_paginate,
+                'products': products,
             })
 
 
@@ -111,6 +117,7 @@ def new_product(request):
 
 
 def register(request):
+
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
         if form.is_valid():
@@ -130,6 +137,6 @@ def login(request):
     user = authenticate(request, username=username, password=password)
     if user is not None:
         login(request, user)
-        return redirect('/123_OK')
+        return redirect('/OK')
     else:
-        return redirect('/321_not_OK')
+        return redirect('/not_OK')

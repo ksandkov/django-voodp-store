@@ -5,9 +5,24 @@
   </head>
   <body>
     <form action="" method="post">
-      {% csrf_token %}
-      {{ form.as_p }}
-      <button type="submit">Зарегистрироваться</button>
+    {{ form.as_p }}
+    {% csrf_token %}
+    <button type="submit">Зарегистрироваться</button>
     </form>
   </body>
 </html>
+
+<!-- <form role="form" class="form-horizontal" method="post" action="">{% csrf_token %}
+    <div class="form-group">
+        {% for field in form %}
+            <div class="input-group">
+                {{ field.label }}:
+                <span class="input-group-addon" style="background-color:#b77b48; color:white"><span class="glyphicon glyphicon-user"></span></span>
+                <input class="form-control" id="{{ field.id_for_label }}" maxlength="30" name="{{ field.name }}" value="" type="text"/>
+                {{ field.errors }}
+            </div>
+        {% endfor %}
+        <input type="submit" class="btn btn-primary" value="login" />
+        <input type="hidden" name="next" value="{{ next }}" />
+    </div>
+</form> -->

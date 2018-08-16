@@ -31,17 +31,18 @@
                                 <ul id="menu-content2" class="menu-content collapse show">
                                     <!-- Single Item -->
                                     <li>
-                                        <a href="#">Сортировать по:</a>
+                                        <a href="" class="not-active">Сортировать по:</a>
                                         <ul class="sub-menu">
                                             <li><a href="?sortby=name_up">По алфавиту А-Я</a></li>
                                             <li><a href="?sortby=name_d">По алфавиту Я-А</a></li>
                                             <li><a href="?sortby=price_up">По цене $-$$</a></li>
                                             <li><a href="?sortby=price_d">По цене $$-$</a></li>
+                                            <li><a href="?">Сбросить фильтры</a></li>
                                         </ul>
                                     </li>
                                     <!-- Single Item -->
                                     <li>
-                                        <a href="#">Каталог:</a>
+                                        <a href="" class="not-active">Каталог:</a>
                                         <ul class="sub-menu">
                                             {% for item in catalogue %}
                                             <li><a href="{% url 'category' item.id %}">{{ item }}</a></li>
@@ -53,7 +54,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="col-12 col-md-8 col-lg-9">
                     <div class="shop_grid_product_area">
                         <div class="row">
@@ -61,7 +61,7 @@
                                 <div class="product-topbar d-flex align-items-center justify-content-between">
                                     <!-- Total Products -->
                                     <div class="total-products">
-                                        <p>Всего <span>{{ sorted_products.count }}</span> товаров</p>
+                                        <p>Всего <span>{{ products.count }}</span> товаров</p>
                                     </div>
                                 </div>
                             </div>
@@ -101,13 +101,14 @@
                         {% endif %}
                     </div>
                     <!-- Pagination -->
+                    {% if paginator.num_pages > 1 %}
                     <nav aria-label="navigation" text-align="center">
 
                         <ul class="pagination mt-50 mb-70">
                             {% if page_paginate.has_previous %}
                             <li class="page-item"><a class="page-link" href="?page={{ page_paginate.previous_page_number }}"><i class="fa fa-angle-left"></i></a></li>
                             {% else %}
-                            <li class="page-item"><a class="page-link" href=""><i class="fa fa-angle-left"></i></a></li>
+                            <li class="page-item"><a class="page-link not-active"><i class="fa fa-angle-left"></i></a></li>
                             {% endif %}
                             {% for num in paginator.page_range %}
                             <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
@@ -115,13 +116,11 @@
                             {% if page_paginate.has_next %}
                             <li class="page-item"><a class="page-link" href="?page={{ page_paginate.next_page_number }}"><i class="fa fa-angle-right"></i></a></li>
                             {% else %}
-                            <li class="page-item"><a class="page-link" href=""><i class="fa fa-angle-right"></i></a></li>
+                            <li class="page-item"><a class="page-link not-active"><i class="fa fa-angle-right"></i></a></li>
                             {% endif %}
                         </ul>
-
-
-{{for_paginate}}
                     </nav>
+                    {% endif %}
                 </div>
             </div>
         </div>
