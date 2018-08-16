@@ -63,6 +63,11 @@
                                     <div class="total-products">
                                         <p>Всего <span>{{ products.count }}</span> товаров</p>
                                     </div>
+                                    {% if user.is_authenticated %}
+                                    <div class="">
+                                        <a class='new-prod-btn' href="{% url 'new_product' %}">ДОБАВИТЬ НОВЫЙ ТОВАР</a>
+                                    </div>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>

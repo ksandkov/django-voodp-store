@@ -313,6 +313,18 @@ img {
     .header_area .classynav ul li .megamenu li a:hover,
     .header_area .classynav ul li .dropdown li a:hover {
       color: #000000; }
+.new-prod-btn{
+    background: #a4ffa5;
+    padding: 15px;
+}
+.new-prod-btn:hover{
+  background: #0315ff;
+  color: white;
+  -webkit-transition-duration: .5s;
+transition-duration: .5s;
+-webkit-transition: all 500ms ease 0s;
+transition: all 500ms ease 0s;
+}
   .header_area .search-area form {
     position: relative;
     z-index: 1;

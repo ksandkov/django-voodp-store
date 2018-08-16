@@ -5,6 +5,7 @@ from django.contrib import messages
 from django.views.generic.edit import UpdateView
 from django.contrib.auth import authenticate, login
 from django.core.paginator import Paginator
+from django.core.exceptions import PermissionDenied
 
 from .models import Category, Product
 from .forms import ProductAddForm, RegistrationForm
@@ -106,24 +107,26 @@ def edit_product(request, cat, prod):
 
 
 def new_product(request):
-    form = ProductAddForm(request.POST or None)
-    if request.method == 'POST' and form.is_valid():
-        category_id = form.cleaned_data['category'].id
-        product_name = form.cleaned_data['name']
-        inst = form.save()
-        inst.user = request.user
-        inst.save()
-        messages.success(request, 'Спасибо, что добавили товар "{}".'.format(
-                        product_name)
-                        )
-        return HttpResponseRedirect('/catalogue/addnew/')
-    return render(request, 'mainpage/newproduct.html', {
-        'form': form,
-    })
+    if request.user.is_authenticated:
+        form = ProductAddForm(request.POST or None)
+        if request.method == 'POST' and form.is_valid():
+            category_id = form.cleaned_data['category'].id
+            product_name = form.cleaned_data['name']
+            inst = form.save()
+            inst.user = request.user
+            inst.save()
+            messages.success(request, 'Спасибо, что добавили товар "{}".'.format(
+                            product_name)
+                            )
+            return HttpResponseRedirect('/catalogue/addnew/')
+        return render(request, 'mainpage/newproduct.html', {
+            'form': form,
+        })
+    else:
+        raise PermissionDenied
 
 
 def register(request):
-
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
         if form.is_valid():
