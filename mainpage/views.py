@@ -6,10 +6,11 @@ from django.views.generic.edit import UpdateView
 from django.contrib.auth import authenticate, login
 from django.core.paginator import Paginator
 from django.core.exceptions import PermissionDenied
+from django.utils.text import slugify
 
 from .models import Category, Product
 from .forms import ProductAddForm, RegistrationForm
-
+from unidecode import unidecode
 
 def index(request):
     name = Category.cat_name
@@ -119,8 +120,9 @@ def new_product(request):
             product_name = form.cleaned_data['name']
             inst = form.save()
             inst.user = request.user
+            inst.slug = slugify(unidecode(product_name))
             inst.save()
-            messages.success(request, 'Спасибо, ваш товар {} будет успешно добавлен.'.format(
+            messages.success(request, 'Спасибо, ваш товар "{}" будет успешно добавлен.'.format(
                             product_name)
                             )
             return HttpResponseRedirect(reverse('category', kwargs={'cat': category_id}))
