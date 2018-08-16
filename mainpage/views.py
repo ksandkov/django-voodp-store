@@ -120,10 +120,10 @@ def new_product(request):
             inst = form.save()
             inst.user = request.user
             inst.save()
-            messages.success(request, 'Спасибо, что добавили товар "{}".'.format(
+            messages.success(request, 'Спасибо, ваш товар {} будет успешно добавлен.'.format(
                             product_name)
                             )
-            return HttpResponseRedirect('/catalogue/addnew/')
+            return HttpResponseRedirect(reverse('category', kwargs={'cat': category_id}))
         return render(request, 'mainpage/newproduct.html', {
             'form': form,
         })
