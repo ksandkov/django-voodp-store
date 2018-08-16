@@ -4,14 +4,15 @@ from .models import Category, Product
 
 
 class AdminProduct(admin.ModelAdmin):
-    list_display = ['name', 'description', 'price', 'category', 'user', 'is_approved', 'slug']
+    list_display = ('id', 'name', 'description', 'price', 'category', 'user', 'is_approved', 'slug')
     list_filter = ('name', 'is_approved',)
-    search_fields = ['name', 'description']
+    search_fields = ('name', 'description')
     prepopulated_fields = {'slug': ('name',)}
+    list_editable = ('name', 'price')
 
 
 class AdminCategory(admin.ModelAdmin):
-    list_display = ['cat_name', 'slug']
+    list_display = ('cat_name', 'slug')
     prepopulated_fields = {'slug': ('cat_name',)}
 
 

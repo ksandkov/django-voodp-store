@@ -1,4 +1,4 @@
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, HttpResponseNotFound
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 from django.contrib import messages
@@ -92,7 +92,12 @@ def product(request, cat, prod):
 
 
 def edit_product(request, cat, prod):
-    instance = Product.objects.get(pk=prod)
+    try:
+        instance = Product.objects.get(pk=prod)
+    except Product.DoesNotExist:
+        raise PermissionDenied
+    if request.user != instance.user:
+        raise PermissionDenied
     if request.method == 'POST':
         form = ProductAddForm(request.POST, instance=instance)
         messages.success(request, 'Товар  успешно изменён.')

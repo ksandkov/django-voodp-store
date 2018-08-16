@@ -22,11 +22,13 @@
         <p class="product-price">{{ item.price }} грн.</p>
         <p class="product-desc">{{ item.description }}</p>
         <!-- Cart & Favourite Box -->
+        {% if request.user == item.user %}
         <div class="cart-fav-box d-flex align-items-center">
             <!-- Cart -->
             <a href="edit/" class="btn essence-btn">Редактировать товар</a>
             <!-- Favourite -->
         </div>
+        {% endif %}
     </div>
 </section>
 <!-- ##### Single Product Details Area End ##### -->
