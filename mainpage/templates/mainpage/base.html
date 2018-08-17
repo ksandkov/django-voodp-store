@@ -1,110 +1,110 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="ru">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="description" content="">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        {% block title %}
-        {% endblock %}
-        <!-- Favicon  -->
-        <link rel="icon" href="img/core-img/favicon.ico">
-        <!-- Core Style CSS -->
-        <link rel="stylesheet" href="{% static 'mainpage/css/core-style.css' %}">
-    </head>
-    <body>
-        {% if messages %}
-        <ul class="messages">
-            {% for message in messages %}
-            {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Важно: {% endif %}
-            {{ message }}
-            {% endfor %}
-        </ul>
-        {% endif %}
-        <!-- ##### Header Area Start ##### -->
-        <header class="header_area">
-            <div class="classy-nav-container breakpoint-off d-flex align-items-center justify-content-between">
-                <!-- Classy Menu -->
-                <nav class="classy-navbar" id="essenceNav">
-                    <!-- Navbar Toggler -->
-                    <div class="classy-navbar-toggler">
-                        <span class="navbarToggler"><span></span><span></span><span></span></span>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> {% block title %} {% endblock %}
+    <!-- Favicon  -->
+    <link rel="icon" href="img/core-img/favicon.ico">
+    <!-- Core Style CSS -->
+    <link rel="stylesheet" href="{% static 'mainpage/css/core-style.css' %}">
+</head>
+
+<body>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Важно: {% endif %}
+        {{ message }}
+        {% endfor %}
+    </ul>
+    {% endif %}
+    <!-- ##### Header Area Start ##### -->
+    <header class="header_area">
+        <div class="classy-nav-container breakpoint-off d-flex align-items-center justify-content-between">
+            <!-- Classy Menu -->
+            <nav class="classy-navbar" id="essenceNav">
+                <!-- Navbar Toggler -->
+                <div class="classy-navbar-toggler">
+                    <span class="navbarToggler"><span></span><span></span><span></span></span>
+                </div>
+                <!-- Menu -->
+                <div class="classy-menu">
+                    <!-- close btn -->
+                    <div class="classycloseIcon">
+                        <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
                     </div>
-                    <!-- Menu -->
-                    <div class="classy-menu">
-                        <!-- close btn -->
-                        <div class="classycloseIcon">
-                            <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
-                        </div>
-                        <!-- Nav Start -->
-                        <div class="classynav">
-                            <ul>
-                                <li><a href="{% url 'index' %}">Главная</a>
+                    <!-- Nav Start -->
+                    <div class="classynav">
+                        <ul>
+                            <li><a href="{% url 'index' %}">Главная</a>
                                 <li><a href="{% url 'catalogue' %}">Каталог</a>
-                            </ul>
-                        </div>
-                        <!-- Nav End -->
+                        </ul>
                     </div>
-                    <!-- Logo -->
-                </nav>
-                <a class="nav-brand" href="/"><img src={% static 'mainpage/img/' %}core-img/logo.png alt=""></a>
-                <!-- Header Meta Data -->
-                <div class="header-meta d-flex clearfix justify-content-end">
-                    <!-- Search Area -->
-                    <div class="search-area">
-                        <form role="search">
-                            <input type="search" name="search" id="headerSearch" placeholder="{{ request.GET.search|default:"Поиск ..." }}">
-                            <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
-                        </form>
-                    </div>
-                    <!-- User Login Info -->
-                    {% if user.is_authenticated %}
-                    <div class="user-login-info">
-                        <a href="" class="not-active">Здравствуйте, {{ request.user }}</a>
-                        <a href="{% url 'logout' %}">Выйти</a>
-                    </div>
-                    {% else %}
-                    <!-- <div class="user-login-info">
+                    <!-- Nav End -->
+                </div>
+                <!-- Logo -->
+            </nav>
+            <a class="nav-brand" href="/"><img src={% static 'mainpage/img/' %}core-img/logo.png alt=""></a>
+            <!-- Header Meta Data -->
+            <div class="header-meta d-flex clearfix justify-content-end">
+                <!-- Search Area -->
+                <div class="search-area">
+                    <form role="search">
+                        <input type="search" name="search" id="headerSearch" placeholder="{{ request.GET.search|default:" Поиск ... " }}">
+                        <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+                    </form>
+                </div>
+                <!-- User Login Info -->
+                {% if user.is_authenticated %}
+                <div class="user-login-info">
+                    <a href="" class="not-active">Здравствуйте, {{ request.user }}</a>
+                    <a href="{% url 'logout' %}">Выйти</a>
+                </div>
+                {% else %}
+                <!-- <div class="user-login-info">
                         Please log in
                         <a href="{% url 'login' %}"><img src={% static 'mainpage/img/' %}core-img/user.svg alt=""></a>
                         </div> -->
-                    <div class="user-login-info">
-                        <a href="{% url 'register' %}">Зарегистрироваться</a>
-                        <a href="{% url 'login' %}">Войти</a>
-                    </div>
-                    {% endif %}
+                <div class="user-login-info">
+                    <a href="{% url 'register' %}">Зарегистрироваться</a>
+                    <a href="{% url 'login' %}">Войти</a>
                 </div>
+                {% endif %}
             </div>
-        </header>
-        <!-- ##### Header Area End ##### -->
-        {% block content %}
-        {% endblock %}
-        <!-- ##### Footer Area Start ##### -->
-        <footer class="footer_area clearfix">
-            <div class="container" style="text-align: center;">
-                <div class="row">
-                    <!-- Single Widget Area -->
-                    <div class="col-12 col-md-12">
-                        <div class="footer-logo mr-50">
-                            <a href="/"><img src={% static 'mainpage/img/' %}core-img/logo2.png alt=""></a>
-                        </div>
+        </div>
+    </header>
+    <!-- ##### Header Area End ##### -->
+    {% block content %} {% endblock %}
+    <!-- ##### Footer Area Start ##### -->
+    <footer class="footer_area clearfix">
+        <div class="container" style="text-align: center;">
+            <div class="row">
+                <!-- Single Widget Area -->
+                <div class="col-12 col-md-12">
+                    <div class="footer-logo mr-50">
+                        <a href="/"><img src={% static 'mainpage/img/' %}core-img/logo2.png alt=""></a>
                     </div>
                 </div>
             </div>
-        </footer>
-        <!-- ##### Footer Area End ##### -->
-        <!-- jQuery (Necessary for All JavaScript Plugins) -->
-        <script src="{% static 'mainpage/js/' %}jquery/jquery-2.2.4.min.js"></script>
-        <!-- Popper js -->
-        <script src="{% static 'mainpage/js/' %}popper.min.js"></script>
-        <!-- Bootstrap js -->
-        <script src="{% static 'mainpage/js/' %}bootstrap.min.js"></script>
-        <!-- Plugins js -->
-        <script src="{% static 'mainpage/js/' %}plugins.js"></script>
-        <!-- Classy Nav js -->
-        <script src="{% static 'mainpage/js/' %}classy-nav.min.js"></script>
-        <!-- Active js -->
-        <script src="{% static 'mainpage/js/' %}active.js"></script>
-    </body>
+        </div>
+    </footer>
+    <!-- ##### Footer Area End ##### -->
+    <!-- jQuery (Necessary for All JavaScript Plugins) -->
+    <script src="{% static 'mainpage/js/' %}jquery/jquery-2.2.4.min.js"></script>
+    <!-- Popper js -->
+    <script src="{% static 'mainpage/js/' %}popper.min.js"></script>
+    <!-- Bootstrap js -->
+    <script src="{% static 'mainpage/js/' %}bootstrap.min.js"></script>
+    <!-- Plugins js -->
+    <script src="{% static 'mainpage/js/' %}plugins.js"></script>
+    <!-- Classy Nav js -->
+    <script src="{% static 'mainpage/js/' %}classy-nav.min.js"></script>
+    <!-- Active js -->
+    <script src="{% static 'mainpage/js/' %}active.js"></script>
+</body>
+
 </html>

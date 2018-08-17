@@ -4,12 +4,12 @@
 <title>Редактирование товара {{ instance.name }}</title>
 {% endblock %}
 {% block content %}
-        <h1 class="catalogue_h1">Форма редактирования товара:<br>"{{ instance.name }}"</h1>
-        <form action="" method="post" class="goods">
-            {% csrf_token %}
-            {{ form.as_table }}
-        <div class="">
-            <button type="submit" name="button" class="btn essence-btn"  style="margin:20px 0">СОХРАНИТЬ</button>
-        </div>
-        </form>
+<h1 class="catalogue_h1">Форма редактирования товара:<br>"{{ instance.name }}"</h1>
+<form action="" method="post" class="goods">
+    {% csrf_token %}
+    {{ form.as_table }}
+    <div class="">
+        <button type="submit" name="button" class="btn essence-btn"  style="margin:20px 0">СОХРАНИТЬ</button>
+    </div>
+</form>
 {% endblock %}

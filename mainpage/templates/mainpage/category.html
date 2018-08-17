@@ -4,28 +4,26 @@
 <title>{{ catalogue_cat }}</title>
 {% endblock %}
 {% block content %}
-        <!-- ##### New Arrivals Area Start ##### -->
-        <section class="new_arrivals_area clearfix">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="section-heading text-center" style="margin-bottom:0px;">
-                            <h1 style="padding-top: 40px;padding-bottom: 25px;">{{ catalogue_cat }}</h1>
-                        </div>
-                    </div>
+<!-- ##### New Arrivals Area Start ##### -->
+<section class="new_arrivals_area clearfix">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-heading text-center" style="margin-bottom:0px;">
+                    <h1 style="padding-top: 40px;padding-bottom: 25px;">{{ catalogue_cat }}</h1>
                 </div>
             </div>
-<section class="shop_grid_area">
+        </div>
+    </div>
+    <section class="shop_grid_area">
         <div class="container">
             <div class="row">
                 <div class="col-12 col-md-4 col-lg-3">
                     <div class="shop_sidebar_area">
-
                         <!-- ##### Single Widget ##### -->
                         <div class="widget catagory mb-50">
                             <!-- Widget Title -->
                             <h6 class="widget-title mb-30">Фильтры</h6>
-
                             <!--  Catagories  -->
                             <div class="catagories-menu">
                                 <ul id="menu-content2" class="menu-content collapse show">
@@ -81,7 +79,7 @@
                                     <div class="product-img">
                                         <img src={% static 'mainpage/img/' %}product-img/product-1.png alt="">
                                         <!-- Hover Thumb -->
-                                            <img class="hover-img" src={% static 'mainpage/img/' %}product-img/product-2.png alt="">
+                                        <img class="hover-img" src={% static 'mainpage/img/' %}product-img/product-2.png alt="">
                                     </div>
                                     <!-- Product Description -->
                                     <div class="product-description">
@@ -90,7 +88,6 @@
                                         </a>
                                         <span>{{ item.description }}</span>
                                         <p class="product-price">Цена: {{ item.price }} грн.</p>
-
                                         <!-- Hover Content -->
                                         <div class="hover-content">
                                             <!-- Add to Cart -->
@@ -108,17 +105,14 @@
                     <!-- Pagination -->
                     {% if paginator.num_pages > 1 %}
                     <nav aria-label="navigation" text-align="center">
-
                         <ul class="pagination mt-50 mb-70">
                             {% if page_paginate.has_previous %}
                             <li class="page-item"><a class="page-link" href="?page={{ page_paginate.previous_page_number }}"><i class="fa fa-angle-left"></i></a></li>
                             {% else %}
                             <li class="page-item"><a class="page-link not-active"><i class="fa fa-angle-left"></i></a></li>
-                            {% endif %}
-                            {% for num in paginator.page_range %}
+                            {% endif %} {% for num in paginator.page_range %}
                             <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
-                            {% endfor %}
-                            {% if page_paginate.has_next %}
+                            {% endfor %} {% if page_paginate.has_next %}
                             <li class="page-item"><a class="page-link" href="?page={{ page_paginate.next_page_number }}"><i class="fa fa-angle-right"></i></a></li>
                             {% else %}
                             <li class="page-item"><a class="page-link not-active"><i class="fa fa-angle-right"></i></a></li>
@@ -130,4 +124,4 @@
             </div>
         </div>
     </section>
-{% endblock %}
+    {% endblock %}

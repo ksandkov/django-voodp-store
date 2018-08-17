@@ -4,14 +4,14 @@
 <title>Добавление нового товара</title>
 {% endblock %}
 {% block content %}
-        <h1 class="catalogue_h1">Форма добавления нового товара</h1>
-        <form action="" method="post" class="goods">
-            {% csrf_token %}
-            {{ form.as_table }}
-        <div>
-            <button type="submit" name="button" class="btn essence-btn"  style="margin:20px 0">ОТПРАВИТЬ</button>
-        </div>
-        </form>
-    </body>
+<h1 class="catalogue_h1">Форма добавления нового товара</h1>
+<form action="" method="post" class="goods">
+    {% csrf_token %}
+    {{ form.as_table }}
+    <div>
+        <button type="submit" name="button" class="btn essence-btn" style="margin:20px 0">ОТПРАВИТЬ</button>
+    </div>
+</form>
+</body>
 </html>
 {% endblock %}

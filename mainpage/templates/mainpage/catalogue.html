@@ -1,24 +1,24 @@
 {% extends 'mainpage/base.html' %}
 {% load static %}
 {% block title %}
-    <title>Список разделов</title>
+<title>Список разделов</title>
 {% endblock %}
 {% block content %}
-        <h1 class="catalogue_h1">Выберите интересующий раздел:</h1>
-        <div class="top_catagory_area section-padding-80 clearfix">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <!-- Single Catagory -->
-                    {% for item in catalogue %}
-                    <div class="col-12 col-sm-6 col-md-4" style="padding-bottom:40px">
-                        <div class="single_catagory_area d-flex align-items-center justify-content-center bg-img" style="background-image: url({% static 'mainpage/img/' %}/bg-img/bg-{{ rand|add:"234"|make_list|random }}.jpg);">
-                            <div class="catagory-content">
-                                <a href="{{ item.id }}">{{ item }}</a>
-                            </div>
-                        </div>
+<h1 class="catalogue_h1">Выберите интересующий раздел:</h1>
+<div class="top_catagory_area section-padding-80 clearfix">
+    <div class="container">
+        <div class="row justify-content-center">
+            <!-- Single Catagory -->
+            {% for item in catalogue %}
+            <div class="col-12 col-sm-6 col-md-4" style="padding-bottom:40px">
+                <div class="single_catagory_area d-flex align-items-center justify-content-center bg-img" style="background-image: url({% static 'mainpage/img/' %}/bg-img/bg-{{ rand|add:" 234 "|make_list|random }}.jpg);">
+                    <div class="catagory-content">
+                        <a href="{{ item.id }}">{{ item }}</a>
                     </div>
-                    {% endfor %}
                 </div>
             </div>
+            {% endfor %}
         </div>
+    </div>
+</div>
 {% endblock %}

@@ -1,7 +1,7 @@
 {% extends 'mainpage/base.html' %}
 {% load static %}
 {% block title %}
-    <title>Вход для зарегистрированного пользователя</title>
+<title>Вход для зарегистрированного пользователя</title>
 {% endblock %}
 {% block content %}
 {% if form.errors %}
@@ -15,11 +15,11 @@
                 <span class="login100-form-title p-b-51">
                     Вход
                 </span>
-                <div class="wrap-input100 validate-input m-b-16" data-validate = "Необходимо указать имя пользователя!">
+                <div class="wrap-input100 validate-input m-b-16" data-validate="Необходимо указать имя пользователя!">
                     {{ form.username }}
                     <span class="focus-input100"></span>
                 </div>
-                <div class="wrap-input100 validate-input m-b-16" data-validate = "Необходимо указать пароль!">
+                <div class="wrap-input100 validate-input m-b-16" data-validate="Необходимо указать пароль!">
                     {{ form.password }}
                     <span class="focus-input100"></span>
                 </div>
