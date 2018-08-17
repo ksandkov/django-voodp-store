@@ -11,7 +11,7 @@
             <!-- Single Catagory -->
             {% for item in catalogue %}
             <div class="col-12 col-sm-6 col-md-4" style="padding-bottom:40px">
-                <div class="single_catagory_area d-flex align-items-center justify-content-center bg-img" style="background-image: url({% static 'mainpage/img/' %}/bg-img/bg-{{ rand|add:" 234 "|make_list|random }}.jpg);">
+                <div class="single_catagory_area d-flex align-items-center justify-content-center bg-img" style="background-image: url({% static 'mainpage/img/' %}/bg-img/bg-{{ rand|add:"234"|make_list|random }}.jpg);">
                     <div class="catagory-content">
                         <a href="{{ item.id }}">{{ item }}</a>
                     </div>

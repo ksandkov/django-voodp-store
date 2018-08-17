@@ -2194,6 +2194,10 @@
  textarea:focus, input:focus {
      border-color: transparent !important;
 }
+.goods textarea:focus, input:focus {
+    border: 1px #c9c9c9 solid !important;
+}
+
  input::-webkit-input-placeholder {
      color: #8f8fa1;
 }
@@ -2505,4 +2509,3 @@
          opacity: 1;
     }
 }
- 
