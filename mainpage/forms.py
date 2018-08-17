@@ -26,18 +26,18 @@ class ProductAddForm(forms.ModelForm):
 
 
 class RegistrationForm(UserCreationForm):
-    email = forms.EmailField(required=True)
+
+
+    email = forms.EmailField(max_length=254, required=True)
 
     class Meta:
         model = User
-        fields = [
-            'username',
-            'email',
-            'password1',
-            'password2',
-        ]
+        fields = ('username', 'email', 'password1', 'password2',)
         help_texts = {
             'username': None,
+            'password1': None,
+            'password2': None,
+            'email': None,
         }
         labels = {
             'username': ugettext_lazy('Имя пользователя'),

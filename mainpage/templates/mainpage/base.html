@@ -19,6 +19,7 @@
         {% for message in messages %}
             {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Важно: {% endif %}
             {{ message }}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
         {% endfor %}
     </ul>
     {% endif %}
@@ -60,9 +61,21 @@
                     </form>
                 </div>
                 <!-- User Login Info -->
+                {% if user.is_authenticated %}
                 <div class="user-login-info">
-                    <a href="{% url 'register' %}"><img src={% static 'mainpage/img/' %}core-img/user.svg alt=""></a>
+                    <a href="" class="not-active">Здравствуйте, {{ request.user }}</a>
+                    <a href="{% url 'logout' %}">Выйти</a>
                 </div>
+                {% else %}
+                <!-- <div class="user-login-info">
+                    Please log in
+                    <a href="{% url 'login' %}"><img src={% static 'mainpage/img/' %}core-img/user.svg alt=""></a>
+                </div> -->
+                <div class="user-login-info">
+                    <a href="{% url 'register' %}">Зарегистрироваться</a>
+                    <a href="{% url 'login' %}">Войти</a>
+                </div>
+                {% endif %}
             </div>
 
         </div>

@@ -7,13 +7,13 @@
         <title>Добавление нового товара</title>
     </head>
     <body>
-        <a href="{% url 'catalogue' %}">НАЗАД К РАЗДЕЛАМ</a><br>
-        <a href="{% url 'index' %}">НА ГЛАВНУЮ</a>
         <h1>Форма добавления нового товара</h1>
         <form action="" method="post" style="text-align:center;width:300px;margin-left: auto;margin-right: auto;display: grid;">
             {% csrf_token %}
             {{ form.as_table }}
-        <div class="">
+
+            {{form.name}} {{form.description}} {{form.price}} {{form.category}}
+        <div>
             <button type="submit" name="button" class="btn">ОТПРАВИТЬ</button>
         </div>
         </form>

@@ -14,8 +14,9 @@ from unidecode import unidecode
 
 def index(request):
     name = Category.cat_name
+    random_products = Product.objects.filter(is_approved=True)
     return render(request, 'mainpage/index.html', {
-        'name': name,
+        'random_products': random_products,
     })
 
 
@@ -35,6 +36,7 @@ def category(request, cat):
     page = request.GET.get('page')
     page_paginate = paginator.get_page(page)
     products = Product.objects.filter(category=cat).filter(is_approved=True)
+
 
 
     if request.method == 'GET':
@@ -138,6 +140,10 @@ def register(request):
         form = RegistrationForm(request.POST)
         if form.is_valid():
             form.save()
+            username = form.cleaned_data.get('username')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(username=username, password=raw_password)
+            login(request, user)
             messages.success(request, 'Вы успешно зарегистрировались')
             return redirect('/')
     else:
@@ -145,14 +151,3 @@ def register(request):
     return render(request, 'mainpage/register.html', {
         'form': form,
     })
-
-
-def login(request):
-    username = request.POST['username']
-    password = request.POST['password']
-    user = authenticate(request, username=username, password=password)
-    if user is not None:
-        login(request, user)
-        return redirect('/OK')
-    else:
-        return redirect('/not_OK')
