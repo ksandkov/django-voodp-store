@@ -1,5 +1,8 @@
 {% extends 'mainpage/base.html' %}
 {% load static %}
+{% block title %}
+    <title>Вход для зарегистрированного пользователя</title>
+{% endblock %}
 {% block content %}
 {% if form.errors %}
 <p class="alert-error">Вы указали неверный логин или пароль. Пожалуйста, попробуйте снова.</p>

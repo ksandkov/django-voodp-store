@@ -4,8 +4,8 @@
 <title>Редактирование товара {{ instance.name }}</title>
 {% endblock %}
 {% block content %}
-        <h1 class="catalogue_h1">Форма редактирования товара {{ instance.name }}</h1>
-        <form action="" method="post" style="text-align:center;width:300px;margin-left: auto;margin-right: auto;display: grid;">
+        <h1 class="catalogue_h1">Форма редактирования товара:<br>"{{ instance.name }}"</h1>
+        <form action="" method="post" class="goods">
             {% csrf_token %}
             {{ form.as_table }}
         <div class="">

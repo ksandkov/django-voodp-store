@@ -1,21 +1,17 @@
+{% extends 'mainpage/base.html' %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="ru" dir="ltr">
-    <head>
-        <meta charset="utf-8">
-        <link rel="stylesheet" type="text/css" href="{% static 'mainpage/style.css' %}" />
-        <title>Добавление нового товара</title>
-    </head>
-    <body>
-        <h1>Форма добавления нового товара</h1>
-        <form action="" method="post" style="text-align:center;width:300px;margin-left: auto;margin-right: auto;display: grid;">
+{% block title %}
+<title>Добавление нового товара</title>
+{% endblock %}
+{% block content %}
+        <h1 class="catalogue_h1">Форма добавления нового товара</h1>
+        <form action="" method="post" class="goods">
             {% csrf_token %}
             {{ form.as_table }}
-
-            {{form.name}} {{form.description}} {{form.price}} {{form.category}}
         <div>
-            <button type="submit" name="button" class="btn">ОТПРАВИТЬ</button>
+            <button type="submit" name="button" class="btn essence-btn"  style="margin:20px 0">ОТПРАВИТЬ</button>
         </div>
         </form>
     </body>
 </html>
+{% endblock %}
