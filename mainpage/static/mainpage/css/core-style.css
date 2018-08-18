@@ -2169,7 +2169,7 @@
 }
  .goods{
      text-align:center;
-     width:300px;
+     width:25%;
      margin-left: auto;
      margin-right: auto;
      display: grid;
@@ -2191,12 +2191,12 @@
      outline: none;
      border: none;
 }
- textarea:focus, input:focus {
+ /* textarea:focus, input:focus {
      border-color: transparent !important;
 }
 .goods textarea:focus, input:focus {
-    border: 1px #c9c9c9 solid !important;
-}
+    border: 1px #c9c9c9 solid;
+} */
 
  input::-webkit-input-placeholder {
      color: #8f8fa1;

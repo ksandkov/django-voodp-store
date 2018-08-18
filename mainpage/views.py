@@ -38,15 +38,17 @@ def category(request, cat):
     products = Product.objects.filter(category=cat).filter(is_approved=True)
 
 
-
     if request.method == 'GET':
         if 'search' in request.GET:
             sorted_products = sorted_products.filter(name__contains=request.GET['search'])
+            amount = sorted_products.count()
+
             return render(request, 'mainpage/category.html', {
                 'catalogue_cat': catalogue_cat,
                 'sorted_products': sorted_products,
                 'catalogue': Category.objects.all().order_by('cat_name'),
                 'products': products,
+                'amount': amount,
             })
         if 'sortby' in request.GET and request.GET['sortby'] == 'name_up':
             return render(request, 'mainpage/category.html', {
