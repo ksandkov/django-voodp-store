@@ -59,7 +59,7 @@
                                 <div class="product-topbar d-flex align-items-center justify-content-between">
                                     <!-- Total Products -->
                                     <div class="total-products">
-                                        <p>Всего <span>{{ products.count }}</span> товаров</p>
+                                        <p>Всего <span>{{ paginator.count }}</span> товаров</p>
                                     </div>
                                     {% if user.is_authenticated %}
                                     <div class="">
@@ -106,13 +106,13 @@
                     {% if paginator.num_pages > 1 %}
                     <nav aria-label="navigation" text-align="center">
                         <ul class="pagination mt-50 mb-70">
-                            {% if page_paginate.has_previous %}
+                            {% if paginator.has_previous %}
                             <li class="page-item"><a class="page-link" href="?page={{ page_paginate.previous_page_number }}"><i class="fa fa-angle-left"></i></a></li>
                             {% else %}
                             <li class="page-item"><a class="page-link not-active"><i class="fa fa-angle-left"></i></a></li>
                             {% endif %} {% for num in paginator.page_range %}
                             <li class="page-item"><a class="page-link" href="?page={{ num }}">{{ num }}</a></li>
-                            {% endfor %} {% if page_paginate.has_next %}
+                            {% endfor %} {% if paginator.has_next %}
                             <li class="page-item"><a class="page-link" href="?page={{ page_paginate.next_page_number }}"><i class="fa fa-angle-right"></i></a></li>
                             {% else %}
                             <li class="page-item"><a class="page-link not-active"><i class="fa fa-angle-right"></i></a></li>

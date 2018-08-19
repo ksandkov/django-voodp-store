@@ -32,61 +32,27 @@ def catalogue(request):
 def category(request, cat):
     catalogue_cat = get_object_or_404(Category, pk=cat)
     sorted_products = Product.objects.filter(category=cat).filter(is_approved=True)
+    catalogue = Category.objects.all().order_by('cat_name')
+
+    if 'search' in request.GET:
+        sorted_products = sorted_products.filter(name__contains=request.GET['search'])
+    if 'sortby' in request.GET and request.GET['sortby'] == 'name_up':
+        sorted_products = sorted_products.order_by('name')
+    if 'sortby' in request.GET and request.GET['sortby'] == 'name_d':
+        sorted_products = sorted_products.order_by('-name')
+    if 'sortby' in request.GET and request.GET['sortby'] == 'price_up':
+        orted_products = sorted_products.order_by('price')
+    if 'sortby' in request.GET and request.GET['sortby'] == 'price_d':
+        sorted_products = sorted_products.order_by('-price')
+
     paginator = Paginator(sorted_products, 3)
-    page = request.GET.get('page')
-    page_paginate = paginator.get_page(page)
-    products = Product.objects.filter(category=cat).filter(is_approved=True)
 
-
-    if request.method == 'GET':
-        if 'search' in request.GET:
-            sorted_products = sorted_products.filter(name__contains=request.GET['search'])
-            amount = sorted_products.count()
-
-            return render(request, 'mainpage/category.html', {
-                'catalogue_cat': catalogue_cat,
-                'sorted_products': sorted_products,
-                'catalogue': Category.objects.all().order_by('cat_name'),
-                'products': products,
-                'amount': amount,
-            })
-        if 'sortby' in request.GET and request.GET['sortby'] == 'name_up':
-            return render(request, 'mainpage/category.html', {
-                'catalogue_cat': catalogue_cat,
-                'sorted_products': sorted_products.order_by('name'),
-                'catalogue': Category.objects.all().order_by('cat_name'),
-                'products': products,
-            })
-        elif 'sortby' in request.GET and request.GET['sortby'] == 'name_d':
-            return render(request, 'mainpage/category.html', {
-                'catalogue_cat': catalogue_cat,
-                'sorted_products': sorted_products.order_by('-name'),
-                'catalogue': Category.objects.all().order_by('cat_name'),
-                'products': products,
-            })
-        elif 'sortby' in request.GET and request.GET['sortby'] == 'price_up':
-            return render(request, 'mainpage/category.html', {
-                'catalogue_cat': catalogue_cat,
-                'sorted_products': sorted_products.order_by('price'),
-                'catalogue': Category.objects.all().order_by('cat_name'),
-                'products': products,
-            })
-        elif 'sortby' in request.GET and request.GET['sortby'] == 'price_d':
-            return render(request, 'mainpage/category.html', {
-                'catalogue_cat': catalogue_cat,
-                'sorted_products': sorted_products.order_by('-price'),
-                'catalogue': Category.objects.all().order_by('cat_name'),
-                'products': products,
-            })
-        else:
-            return render(request, 'mainpage/category.html', {
-                'catalogue_cat': catalogue_cat,
-                'sorted_products': paginator.page(request.GET.get('page', 1)),
-                'catalogue': Category.objects.all().order_by('cat_name'),
-                'paginator': paginator,
-                'page_paginate': page_paginate,
-                'products': products,
-            })
+    return render(request, 'mainpage/category.html', {
+        'catalogue_cat': catalogue_cat,
+        'sorted_products': paginator.page(request.GET.get('page', 1)),
+        'catalogue': catalogue,
+        'paginator': paginator,
+    })
 
 
 def product(request, cat, prod):

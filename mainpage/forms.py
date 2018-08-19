@@ -27,7 +27,6 @@ class ProductAddForm(forms.ModelForm):
 
 class RegistrationForm(UserCreationForm):
 
-
     email = forms.EmailField(max_length=254, required=True)
 
     class Meta:
@@ -45,3 +44,8 @@ class RegistrationForm(UserCreationForm):
             'password1': ugettext_lazy('Введите пароль'),
             'password2': ugettext_lazy('Повторите пароль'),
         }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['password1'].label = 'Введите пароль'
+        self.fields['password2'].label = 'Повторите пароль'
