@@ -1,16 +1,14 @@
-from django.urls import path, include
+from django.urls import path
 
 from . import views
-from .views import index, catalogue, category, new_product, register, product, edit_product
+from .views import catalogue, category, new_product, product, edit_product
 
 
 urlpatterns = [
-    path('', index, name='index'),
-    path('catalogue/', catalogue, name='catalogue'),
-    path('catalogue/<int:cat>/', category, name='category'),
-    path('catalogue/addnew/', new_product, name='new_product'),
-    path('accounts/register/', register, name='register'),
-    path('catalogue/<int:cat>/<int:prod>/', product, name='product'),
-    path('catalogue/<int:cat>/<int:prod>/edit/', edit_product, name='edit_product'),
-    path('accounts/', include('django.contrib.auth.urls')),
+    path('', catalogue, name='catalogue'),
+    path('<int:cat>/', category, name='category'),
+    path('addnew/', new_product, name='new_product'),
+    path('<int:cat>/<int:prod>/', product, name='product'),
+    path('<int:cat>/<int:prod>/edit/', edit_product, name='edit_product'),
+
 ]
