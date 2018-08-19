@@ -42,7 +42,7 @@ def category(request, cat):
         if request.GET['sortby'] == 'name_d':
             sorted_products = sorted_products.order_by('-name')
         if request.GET['sortby'] == 'price_up':
-            orted_products = sorted_products.order_by('price')
+            sorted_products = sorted_products.order_by('price')
         if request.GET['sortby'] == 'price_d':
             sorted_products = sorted_products.order_by('-price')
 
