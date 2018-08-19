@@ -36,14 +36,15 @@ def category(request, cat):
 
     if 'search' in request.GET:
         sorted_products = sorted_products.filter(name__contains=request.GET['search'])
-    if 'sortby' in request.GET and request.GET['sortby'] == 'name_up':
-        sorted_products = sorted_products.order_by('name')
-    if 'sortby' in request.GET and request.GET['sortby'] == 'name_d':
-        sorted_products = sorted_products.order_by('-name')
-    if 'sortby' in request.GET and request.GET['sortby'] == 'price_up':
-        orted_products = sorted_products.order_by('price')
-    if 'sortby' in request.GET and request.GET['sortby'] == 'price_d':
-        sorted_products = sorted_products.order_by('-price')
+    if 'sortby' in request.GET:
+        if request.GET['sortby'] == 'name_up':
+            sorted_products = sorted_products.order_by('name')
+        if request.GET['sortby'] == 'name_d':
+            sorted_products = sorted_products.order_by('-name')
+        if request.GET['sortby'] == 'price_up':
+            orted_products = sorted_products.order_by('price')
+        if request.GET['sortby'] == 'price_d':
+            sorted_products = sorted_products.order_by('-price')
 
     paginator = Paginator(sorted_products, 3)
 
